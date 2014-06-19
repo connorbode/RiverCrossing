@@ -79,15 +79,18 @@ describe('Game', function () {
       });
     });
 
-    // it('returns true if state is valid', function () {
-    //   _.times(10, function () {
-    //     var config = helpers.randomConfig();
-    //     while(_.contains(invalid_configs, config)) {
-    //       config = helpers.randomConfig();
-    //     }
-    //     expect(config.isValid()).toEqual(true);
-    //   });
-    // });
+    it('returns true if state is valid', function () {
+      _.times(10, function () {
+        var config = helpers.randomConfig();
+
+        // generate random valid config 
+        while(_.find(invalid_configs, function (conf) { return config.equals(conf); })) {
+          config = helpers.randomConfig();
+        }
+
+        expect(config.isValid()).toEqual(true);
+      });
+    });
   });
 
   describe('equals()', function () {
