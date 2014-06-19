@@ -3,6 +3,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('test', ['karma:unit']);
+  grunt.registerTask('test-debug', ['karma:debug']);
 
   // Print a timestamp (useful for when watching)
   grunt.registerTask('timestamp', function() {
@@ -23,7 +24,8 @@ module.exports = function (grunt) {
       debug: {
         configFile: 'karma.conf.js',
         singleRun: false,
-        autoWatch: true
+        autoWatch: true,
+        browsers: ['Chrome']
       }
     }
   });
