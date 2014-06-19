@@ -81,12 +81,12 @@ describe('Game', function () {
 
     it('returns true if state is valid', function () {
       _.times(10, function () {
-        var config = helpers.randomConfig();
+        var config;
 
         // generate random valid config 
-        while(_.find(invalid_configs, function (conf) { return config.equals(conf); })) {
+        do {
           config = helpers.randomConfig();
-        }
+        } while (_.find(invalid_configs, function (conf) { return config.equals(conf); }));
 
         expect(config.isValid()).toEqual(true);
       });
@@ -143,6 +143,27 @@ describe('Game', function () {
         _.forEach(["fox", "goose", "beans", "farmer"], function (prop) {
           expect(first[prop]).toEqual(second[prop]);
         });
+      });
+    });
+  });
+
+  describe('isFinal()', function () {
+    it('returns true when the game is in a final state', function () {
+      expect(new Game({
+        "fox": true,
+        "goose": true,
+        "beans": true,
+        "farmer": true
+      }).isFinal()).toEqual(true);
+    });
+
+    it('returns false when the game is in a non-final state', function () {
+      _.times(10, function () {
+        var game;
+        do {
+          game = helpers.randomConfig();
+        } while (game.fox && game.goose && game.beans && game.farmer);
+        expect(game.isFinal()).toEqual(false);
       });
     });
   });

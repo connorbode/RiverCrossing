@@ -150,36 +150,3 @@ Game.prototype.invalid_states = [
 		beans: false
 	}
 ];
-
-function solve () {
-	var game;
-	var states = [new Game()];
-	var clone;
-	var moves = ['fox', 'goose', 'beans'];
-	var i;
-
-	while(states.length > 0) {
-		game = states.pop();
-
-		for(i = 0; i < moves.length; i++) {
-			clone = game.clone();
-			clone.cross(moves[i]);
-
-			if(clone.isFinal()) {
-				console.log("SOLVED");
-
-				for(i = 0; i < clone.trace.length; i++) {
-					console.log(" " + clone.trace[i]);
-				}
-
-				return;
-			}
-
-			if(clone.isValid()) {
-				states.push(clone);
-			}
-		}
-	}
-
-	console.log("reached the end of the games ... :( no solution");
-}
