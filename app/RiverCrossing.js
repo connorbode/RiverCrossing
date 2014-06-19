@@ -39,7 +39,6 @@ function Game (params) {
 
 		// is the item "bring" a valid item to bring?
 		if(bring !== 'fox' && bring !== 'goose' && bring !== 'beans' && bring !== null) {
-			console.log('boo');
 			return false;
 		}
 
@@ -94,6 +93,11 @@ function Game (params) {
 			beans: this.beans
 		});
 	};
+
+  // whether this game is equal to anotehr game
+  this.equals = function (other) {
+    return this.fox === other.fox && this.goose === other.goose && this.beans === other.beans && this.farmer === other.farmer;
+  };
 
 	// checks if the game is in a final state
 	this.isFinal = function () {
