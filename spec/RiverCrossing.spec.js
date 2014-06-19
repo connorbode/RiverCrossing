@@ -45,12 +45,10 @@ describe('Game', function () {
     var invalid_configs = [
       { fox: true, goose: true, beans: true, farmer: false },
       { fox: true, goose: true, beans: false, farmer: false },
-      { fox: true, goose: false, beans: true, farmer: false },
       { fox: false, goose: true, beans: true, farmer: false },
       { fox: false, goose: false, beans: false, farmer: true },
       { fox: false, goose: false, beans: true, farmer: true },
-      { fox: true, goose: false, beans: false, farmer: true },
-      { fox: false, goose: true, beans: false, beans: true }
+      { fox: true, goose: false, beans: false, farmer: true }
     ];
 
     _.each(invalid_configs, function (invalid_config) {
