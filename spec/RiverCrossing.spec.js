@@ -110,7 +110,6 @@ describe('Game', function () {
 
     it('returns false if two games are not equal', function () {
       _.times(10, function () {
-        var i;
         var changed = false;
         var first = helpers.randomConfig();
         var second = new Game({
@@ -132,6 +131,18 @@ describe('Game', function () {
 
         expect(first.equals(second)).toEqual(false);
         expect(second.equals(first)).toEqual(false);
+      });
+    });
+  });
+
+  describe('clone()', function () {
+    it('creates an identical game', function () {
+      _.times(10, function () {
+        var first = helpers.randomConfig();
+        var second = first.clone();
+        _.forEach(["fox", "goose", "beans", "farmer"], function (prop) {
+          expect(first[prop]).toEqual(second[prop]);
+        });
       });
     });
   });
